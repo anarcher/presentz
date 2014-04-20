@@ -14,7 +14,7 @@ import (
 	"path/filepath"
 	"sort"
 
-	"code.google.com/p/go.talks/pkg/present"
+	"github.com/anarcher/presentz/pkg/present"
 )
 
 func init() {

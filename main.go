@@ -15,10 +15,10 @@ import (
 	"os"
 	"strings"
 
-	"code.google.com/p/go.talks/pkg/present"
+	"github.com/anarcher/presentz/pkg/present"
 )
 
-const basePkg = "code.google.com/p/go.talks/present"
+const basePkg = "github.com/anarcher/presentz/pkg/present"
 
 var basePath string
 
