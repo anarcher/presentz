@@ -14,11 +14,13 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"runtime"
+//	"runtime"
 	"strconv"
 
 	"code.google.com/p/go.net/websocket"
 )
+
+//import "fmt"
 
 const msgLimit = 1000 // max number of messages to send per session
 
@@ -136,22 +138,28 @@ func (p *Process) start(body string) error {
 	// This makes Kill work.
 
 	bin := filepath.Join(tmpdir, "compile"+strconv.Itoa(<-uniq))
-	src := bin + ".go"
+	//src := bin + ".go"
+    src := bin + ".d"
+
+    /*
 	if runtime.GOOS == "windows" {
 		bin += ".exe"
 	}
+    */
 
 	// write body to x.go
-	defer os.Remove(src)
+	//defer os.Remove(src)
 	err := ioutil.WriteFile(src, []byte(body), 0666)
 	if err != nil {
 		return err
 	}
 
-	// build x.go, creating x
-	defer os.Remove(bin)
+	//// build x.go, creating x
+	//defer os.Remove(bin)
 	dir, file := filepath.Split(src)
-	cmd := p.cmd(dir, "go", "build", "-o", bin, file)
+    _,binfile := filepath.Split(bin)
+	//cmd := p.cmd(dir, "go", "build", "-o", bin, file)
+	cmd := p.cmd(dir,"dmd", file,"-of"+binfile,"-unittest")
 	if err := cmd.Run(); err != nil {
 		return err
 	}
