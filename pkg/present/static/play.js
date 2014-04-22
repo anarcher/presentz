@@ -93,7 +93,8 @@
   }
   if (play.length > 0) {
     if (window.connectPlayground) {
-      runFunc = window.connectPlayground("ws://localhost:3999/socket");
+      var hostname = document.location.hostname;
+      runFunc = window.connectPlayground("ws://"+hostname+":3999/socket");
     } else {
       // If this message is logged,
       // we have neglected to include socket.js or playground.js.
